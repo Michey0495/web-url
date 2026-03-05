@@ -23,6 +23,7 @@ http://localhost:3000 で起動。
 | パス | 説明 |
 |------|------|
 | `/` | トップページ: スキーマタイプ一覧、3ステップ説明、FAQ |
+| `/types` | スキーマタイプ一覧ディレクトリ |
 | `/generate/[type]` | スキーマタイプ別生成ページ（10タイプ） |
 | `/guides/llmo` | LLMO対策ガイド |
 | `/guides/aeo` | AEO対策ガイド |
@@ -82,3 +83,11 @@ Vercel にデプロイ。ドメイン: `schema.ezoai.jp`
 - HTMLスニペット出力（scriptタグ付きでそのままコピー可能）
 - フィードバックウィジェット + `/api/feedback` エンドポイント
 - Google Analytics対応（`NEXT_PUBLIC_GA_ID` 環境変数で設定）
+
+### Night 3 (完了)
+- 全10スキーマタイプにSEOコンテンツ追加（longDescription, useCases, tips, relatedTypes）
+- 生成ページに「主な用途」「設置のポイント」「関連する構造化データ」セクション追加
+- `/types` ページ新設（スキーマタイプ一覧ディレクトリ、ItemList構造化データ付き）
+- 全ページにOGPメタデータ追加（generate, guides）
+- ヘッダーナビゲーション改善（スキーマ一覧リンク追加）
+- サイトマップ修正（不要ルート削除、/types追加）
