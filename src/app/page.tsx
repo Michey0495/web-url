@@ -328,6 +328,44 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "構造化データ（JSON-LD）を自動生成する方法",
+            description:
+              "Schema AIを使ってSchema.org準拠のJSON-LD構造化データを30秒で生成する手順",
+            totalTime: "PT30S",
+            tool: {
+              "@type": "HowToTool",
+              name: "Schema AI",
+            },
+            step: [
+              {
+                "@type": "HowToStep",
+                position: 1,
+                name: "スキーマタイプを選択",
+                text: "FAQ、商品、ローカルビジネスなど10種類のスキーマタイプから用途に合ったものを選択します。",
+                url: "https://schema.ezoai.jp/types",
+              },
+              {
+                "@type": "HowToStep",
+                position: 2,
+                name: "フォームに情報を入力",
+                text: "表示されるフォームに沿って、サイト名やコンテンツ情報を入力します。",
+              },
+              {
+                "@type": "HowToStep",
+                position: 3,
+                name: "JSON-LDコードをコピー",
+                text: "生成されたJSON-LDコードをコピーボタンでクリップボードにコピーし、HTMLのheadタグ内に貼り付けます。",
+              },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
             "@type": "WebSite",
             name: "Schema AI",
             url: "https://schema.ezoai.jp",
