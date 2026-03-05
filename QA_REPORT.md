@@ -1,89 +1,51 @@
 # QA Report - Schema AI (web-url)
 
-Date: 2026-03-06
+**Date**: 2026-03-06 (Night 3 - Full QA Pass)
+**Tester**: Claude Code (Automated QA)
 
-## Build & Lint
+## Summary
 
-| Check | Status |
-|-------|--------|
-| `npm run build` | PASS |
-| `npm run lint` | PASS |
-| TypeScript strict | PASS |
-
-## Issues Found & Fixed
-
-### 1. Missing 404 page
-- **Severity:** Medium
-- **Status:** Fixed
-- Created `src/app/not-found.tsx` with proper layout, messaging, and navigation back to top
-
-### 2. Missing loading state
-- **Severity:** Medium
-- **Status:** Fixed
-- Created `src/app/generate/[type]/loading.tsx` with skeleton UI matching the form layout
-
-### 3. Missing error boundary
-- **Severity:** Medium
-- **Status:** Fixed
-- Created `src/app/generate/[type]/error.tsx` with retry button and navigation
-
-### 4. Missing favicon
-- **Severity:** Low
-- **Status:** Fixed
-- Created `src/app/icon.tsx` generating a "S" icon with emerald color on black background
-
-### 5. Missing OGP image
-- **Severity:** Medium
-- **Status:** Fixed
-- Created `src/app/opengraph-image.tsx` generating a branded OGP image (1200x630)
-
-### 6. Accessibility: missing aria-label on close button
-- **Severity:** Low
-- **Status:** Fixed
-- Added `aria-label="閉じる"` to feedback widget close button
+Overall quality: **Good**. Build clean, lint clean, all pages render correctly, SEO complete.
 
 ## Checklist
 
-- [x] `npm run build` success
-- [x] `npm run lint` no errors
-- [x] Responsive design (mobile/desktop) - Tailwind responsive classes used correctly
-- [x] favicon - generated via `icon.tsx`
-- [x] OGP image - generated via `opengraph-image.tsx`
-- [x] 404 page - `not-found.tsx`
-- [x] Loading state - `loading.tsx`
-- [x] Error state - `error.tsx`
+| Item | Status | Notes |
+|------|--------|-------|
+| `npm run build` | PASS | 23 pages, 0 errors |
+| `npm run lint` | PASS | 0 errors, 0 warnings |
+| Responsive (mobile/desktop) | PASS | Header nav gap adjusted for mobile |
+| favicon | PASS | Dynamic icon.tsx (32x32) |
+| OGP image | PASS | Dynamic opengraph-image.tsx (1200x630) |
+| 404 page | PASS | Custom not-found.tsx |
+| Loading state | PASS | Skeleton UI in generate/[type]/loading.tsx |
+| Error state | PASS | Error boundary in generate/[type]/error.tsx |
+| JSON-LD | PASS | WebSite, SoftwareApplication, FAQPage, BreadcrumbList, ItemList |
+| sitemap.xml | PASS | All pages with priorities |
+| robots.txt | PASS | AI crawlers allowed |
+| llms.txt | PASS | Fixed version to Next.js 16 |
+| agent.json | PASS | A2A Agent Card |
+| Form validation | PASS | Required fields, error messages |
+| Edge cases | PASS | Empty/special chars handled |
 
-## SEO Verification
+## Issues Found & Fixed (This Pass)
 
-- [x] Metadata: title, description set on all pages
-- [x] Canonical URLs set on all pages
-- [x] OpenGraph metadata in layout
-- [x] Twitter card metadata in layout
-- [x] JSON-LD structured data on home page (WebSite + FAQPage)
-- [x] JSON-LD structured data on generate pages (BreadcrumbList)
-- [x] JSON-LD structured data on guide pages (Article)
-- [x] sitemap.xml generated with all pages
-- [x] robots.txt with AI crawler permissions
-- [x] llms.txt present
-- [x] .well-known/agent.json present
+### 1. llms.txt version mismatch (Fixed)
+- llms.txt said "Next.js 15", actual is 16.1.6 -> updated to "Next.js 16"
 
-## Edge Cases
+### 2. Header nav mobile spacing (Fixed)
+- Fixed `gap-6` to `gap-3 sm:gap-6` for better mobile layout
 
-- [x] Form validation: required fields checked before generation
-- [x] Empty input: error messages displayed with red highlights
-- [x] FAQ parser: handles Q:/A: format, ignores malformed lines
-- [x] API validation: type and data required, missing fields reported
+## Previously Fixed (Night 2)
 
-## Performance
+- 404 page, loading state, error boundary
+- favicon, OGP image
+- Accessibility: aria-label on feedback close button
 
-- [x] Server Components used by default (only form and feedback widget are client)
-- [x] Static generation for all schema type pages via `generateStaticParams`
-- [x] No unnecessary re-renders detected in client components
-- [x] Google Analytics loaded with `afterInteractive` strategy
-- [x] lucide-react only used by shadcn/ui select component (tree-shaken)
+## Verified OK
 
-## Notes
-
-- All pages follow the design system (black background, emerald accent, no icons/emojis)
-- All AI-First requirements met (MCP endpoint, agent.json, llms.txt, robots.txt)
-- Form generation is client-side only (no API calls needed for basic generation)
+- **SEO**: All pages have title, description, canonical, OpenGraph
+- **Design**: Black bg, emerald accent, no emojis/icons, card styles correct
+- **A11y**: lang="ja", form labels with htmlFor, semantic HTML, focus styles
+- **Performance**: SSG for all content pages, client components minimal
+- **API**: REST + MCP endpoints validate input, return proper errors
+- **Edge cases**: Empty input rejected, JSON.stringify escapes special chars

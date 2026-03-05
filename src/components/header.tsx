@@ -7,7 +7,7 @@ export function Header() {
         <Link href="/" className="text-lg font-bold text-white">
           Schema <span className="text-emerald-500">AI</span>
         </Link>
-        <nav className="flex items-center gap-6 text-sm text-white/70">
+        <nav className="flex items-center gap-3 text-sm text-white/70 sm:gap-6">
           <Link
             href="/types"
             className="transition-colors duration-200 hover:text-white"
