@@ -1,0 +1,54 @@
+# Schema AI
+
+> AI構造化データジェネレーター - Schema.org準拠のJSON-LD構造化データをAIが自動生成
+
+## サービス概要
+
+Schema AIは、Webサイト向けのJSON-LD構造化データを自動生成するツールです。
+スキーマタイプを選択し、サイト情報を入力するだけで、Schema.org準拠のJSON-LDコードが生成されます。
+
+## 対応スキーマタイプ
+
+- FAQPage: よくある質問
+- LocalBusiness: ローカルビジネス（店舗・事業所）
+- Product: 商品
+- Article: 記事
+- BreadcrumbList: パンくずリスト
+- Organization: 組織
+- WebSite: Webサイト
+- Event: イベント
+- HowTo: ハウツー（手順ガイド）
+- JobPosting: 求人
+
+## API
+
+### REST API
+- POST /api/generate - 構造化データ生成
+  - Body: { type: string, data: Record<string, string> }
+  - Response: { success: boolean, jsonLd: string, htmlSnippet: string }
+
+### MCP Server
+- POST /api/mcp - JSON-RPC 2.0 エンドポイント
+  - tools/list: 利用可能なツール一覧
+  - tools/call: ツール実行
+    - generate_schema: 構造化データ生成
+    - list_schema_types: スキーマタイプ一覧
+
+## ページ構成
+
+- / - トップページ
+- /generate/[type] - スキーマタイプ別生成ページ
+- /guides/llmo - LLMO対策ガイド
+- /guides/aeo - AEO対策ガイド
+
+## 技術スタック
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+## 運営
+
+- URL: https://schema.ezoai.jp
+- 運営: ezoai.jp

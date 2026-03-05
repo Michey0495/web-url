@@ -1,0 +1,45 @@
+{
+  "name": "Schema AI",
+  "description": "AI構造化データジェネレーター。Schema.org準拠のJSON-LD構造化データをAIが自動生成します。",
+  "url": "https://schema.ezoai.jp",
+  "version": "1.0.0",
+  "capabilities": {
+    "tools": true,
+    "streaming": false
+  },
+  "endpoints": {
+    "mcp": "https://schema.ezoai.jp/api/mcp"
+  },
+  "tools": [
+    {
+      "name": "generate_schema",
+      "description": "スキーマタイプとデータからJSON-LD構造化データを生成",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "スキーマタイプ: faq, local-business, product, article, breadcrumb, organization, website, event, howto, job-posting"
+          },
+          "data": {
+            "type": "object",
+            "description": "スキーマタイプに応じたフィールドデータ"
+          }
+        },
+        "required": ["type", "data"]
+      }
+    },
+    {
+      "name": "list_schema_types",
+      "description": "対応しているスキーマタイプの一覧を取得",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  ],
+  "provider": {
+    "name": "ezoai.jp",
+    "url": "https://ezoai.jp"
+  }
+}
