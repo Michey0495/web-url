@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -47,17 +47,16 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
   const [copied, setCopied] = useState(false);
   const [copiedSnippet, setCopiedSnippet] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
-  const [history, setHistory] = useState<HistoryEntry[]>([]);
-  const resultRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
+  const [history, setHistory] = useState<HistoryEntry[]>(() => {
+    if (typeof window === "undefined") return [];
     try {
       const raw = localStorage.getItem(HISTORY_KEY);
-      if (raw) setHistory(JSON.parse(raw));
+      return raw ? JSON.parse(raw) : [];
     } catch {
-      // localStorage not available
+      return [];
     }
-  }, []);
+  });
+  const resultRef = useRef<HTMLDivElement>(null);
 
   function handleChange(key: string, value: string) {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -158,6 +157,8 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
                   value={formData[field.key] || ""}
                   onChange={(e) => handleChange(field.key, e.target.value)}
                   rows={6}
+                  maxLength={5000}
+                  aria-invalid={hasError || undefined}
                   className={`border-white/10 bg-white/5 text-white placeholder:text-white/30 ${hasError ? "border-red-500/50" : ""}`}
                 />
               ) : field.type === "select" ? (
@@ -166,6 +167,7 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
                   onValueChange={(v) => handleChange(field.key, v)}
                 >
                   <SelectTrigger
+                    aria-invalid={hasError || undefined}
                     className={`border-white/10 bg-white/5 text-white ${hasError ? "border-red-500/50" : ""}`}
                   >
                     <SelectValue placeholder="選択してください" />
@@ -189,6 +191,8 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
                   placeholder={field.placeholder}
                   value={formData[field.key] || ""}
                   onChange={(e) => handleChange(field.key, e.target.value)}
+                  maxLength={1000}
+                  aria-invalid={hasError || undefined}
                   className={`border-white/10 bg-white/5 text-white placeholder:text-white/30 ${hasError ? "border-red-500/50" : ""}`}
                 />
               )}

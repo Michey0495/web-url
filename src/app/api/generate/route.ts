@@ -10,11 +10,20 @@ export async function POST(request: NextRequest) {
       data: Record<string, string>;
     };
 
-    if (!type || !data) {
+    if (!type || typeof type !== "string" || !data || typeof data !== "object") {
       return NextResponse.json(
         { error: "type と data は必須です" },
         { status: 400 }
       );
+    }
+
+    for (const [key, value] of Object.entries(data)) {
+      if (typeof value !== "string" || value.length > 5000) {
+        return NextResponse.json(
+          { error: `フィールド "${key}" の値が不正です（最大5000文字）` },
+          { status: 400 }
+        );
+      }
     }
 
     const schemaType = getSchemaType(type);
