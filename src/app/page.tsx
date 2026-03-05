@@ -170,6 +170,96 @@ export default function HomePage() {
         </section>
 
         <section className="border-t border-white/10 py-20">
+          <div className="mx-auto max-w-5xl px-4">
+            <h2 className="mb-4 text-center text-2xl font-bold text-white">
+              構造化データの有無でこう変わる
+            </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-center text-sm text-white/50">
+              Google検索結果での表示の違い
+            </p>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="rounded-lg border border-white/10 bg-white/5 p-6">
+                <p className="mb-4 text-sm font-semibold text-red-400">
+                  構造化データなし
+                </p>
+                <div className="space-y-3 rounded border border-white/10 bg-black/50 p-4">
+                  <p className="text-sm text-blue-400">
+                    渋谷カフェ - トップページ
+                  </p>
+                  <p className="text-xs text-emerald-600">
+                    https://example.com
+                  </p>
+                  <p className="text-xs leading-relaxed text-white/40">
+                    渋谷にあるカフェです。コーヒーやスイーツを提供しています...
+                  </p>
+                </div>
+                <p className="mt-3 text-xs text-white/30">
+                  通常の検索結果のみ。情報量が少なくCTRが低い。
+                </p>
+              </div>
+              <div className="rounded-lg border border-emerald-500/30 bg-white/5 p-6">
+                <p className="mb-4 text-sm font-semibold text-emerald-400">
+                  構造化データあり
+                </p>
+                <div className="space-y-3 rounded border border-white/10 bg-black/50 p-4">
+                  <p className="text-sm text-blue-400">
+                    渋谷カフェ - オーガニックコーヒー専門店
+                  </p>
+                  <p className="text-xs text-emerald-600">
+                    https://example.com
+                  </p>
+                  <p className="text-xs leading-relaxed text-white/40">
+                    渋谷駅徒歩3分のオーガニックコーヒー専門店...
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-2 text-xs">
+                    <span className="rounded bg-white/10 px-2 py-1 text-white/60">
+                      営業: 8:00-22:00
+                    </span>
+                    <span className="rounded bg-white/10 px-2 py-1 text-white/60">
+                      渋谷区神南1-2-3
+                    </span>
+                    <span className="rounded bg-white/10 px-2 py-1 text-white/60">
+                      03-1234-5678
+                    </span>
+                  </div>
+                </div>
+                <p className="mt-3 text-xs text-white/30">
+                  リッチリザルト表示。CTRが平均20-30%向上。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-white/10 py-20">
+          <div className="mx-auto max-w-5xl px-4">
+            <h2 className="mb-8 text-center text-2xl font-bold text-white">
+              こんな方に最適
+            </h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { title: "Web担当者", desc: "SEO対策の一環として構造化データを導入したい" },
+                { title: "ECサイト運営者", desc: "商品情報をGoogle検索で目立たせたい" },
+                { title: "ブロガー", desc: "記事やFAQのリッチスニペットを獲得したい" },
+                { title: "マーケター", desc: "LLMO/AEO対策でAI検索時代に備えたい" },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-lg border border-white/10 bg-white/5 p-5"
+                >
+                  <h3 className="text-base font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/50">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-white/10 py-20">
           <div className="mx-auto max-w-3xl px-4">
             <h2 className="mb-8 text-center text-2xl font-bold text-white">
               よくある質問
@@ -203,6 +293,30 @@ export default function HomePage() {
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+        <section className="border-t border-white/10 py-20">
+          <div className="mx-auto max-w-3xl px-4 text-center">
+            <h2 className="text-2xl font-bold text-white">
+              今すぐ構造化データを生成
+            </h2>
+            <p className="mt-4 text-base text-white/50">
+              無料・登録不要。30秒で構造化データが手に入る。
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link
+                href="/generate/faq"
+                className="inline-flex h-12 items-center rounded-lg bg-emerald-500 px-8 text-base font-semibold text-black transition-all duration-200 hover:bg-emerald-400"
+              >
+                無料で生成する
+              </Link>
+              <Link
+                href="/types"
+                className="inline-flex h-12 items-center rounded-lg border border-white/20 px-8 text-base font-semibold text-white transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+              >
+                スキーマタイプを選ぶ
+              </Link>
             </div>
           </div>
         </section>

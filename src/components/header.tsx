@@ -26,6 +26,12 @@ export function Header() {
           >
             AEO対策
           </Link>
+          <Link
+            href="/about"
+            className="transition-colors duration-200 hover:text-white"
+          >
+            概要
+          </Link>
         </nav>
       </div>
     </header>

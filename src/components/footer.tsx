@@ -73,6 +73,14 @@ export function Footer() {
                   AEO対策ガイド
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="transition-colors duration-200 hover:text-white"
+                >
+                  Schema AIについて
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
