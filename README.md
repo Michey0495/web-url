@@ -48,6 +48,7 @@ http://localhost:3000 で起動。
 |---------------|---------|------|
 | `/api/generate` | POST | 構造化データ生成 |
 | `/api/mcp` | POST | MCP Server (JSON-RPC 2.0) |
+| `/api/feedback` | POST | フィードバック受付 → GitHub Issue作成 |
 
 ## AI公開チャネル
 
@@ -75,3 +76,9 @@ Vercel にデプロイ。ドメイン: `schema.ezoai.jp`
 - LLMO/AEOガイドページ
 - AI公開チャネル (llms.txt, agent.json, robots.txt, MCP)
 - SEOメタデータ、OGP、構造化データ、sitemap.xml
+
+### Night 2 (完了)
+- フォームバリデーション（必須フィールド未入力時のエラー表示）
+- HTMLスニペット出力（scriptタグ付きでそのままコピー可能）
+- フィードバックウィジェット + `/api/feedback` エンドポイント
+- Google Analytics対応（`NEXT_PUBLIC_GA_ID` 環境変数で設定）
