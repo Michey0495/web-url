@@ -16,29 +16,52 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Schema AI - AI構造化データジェネレーター",
+    default: "Schema AI - AI構造化データジェネレーター | JSON-LD自動生成ツール",
     template: "%s | Schema AI",
   },
   description:
-    "AIが自動でSchema.org準拠のJSON-LD構造化データを生成。LLMO/AEO時代のSEO対策を簡単に。",
+    "AIがSchema.org準拠のJSON-LD構造化データを自動生成。FAQ、商品、ローカルビジネスなど10タイプ対応。LLMO/AEO時代のSEO対策を無料で。登録不要、30秒で生成。",
+  keywords: [
+    "構造化データ",
+    "JSON-LD",
+    "Schema.org",
+    "SEO",
+    "LLMO",
+    "AEO",
+    "リッチスニペット",
+    "構造化データ 生成",
+    "JSON-LD ジェネレーター",
+    "AI SEO",
+  ],
   metadataBase: new URL("https://schema.ezoai.jp"),
   openGraph: {
     type: "website",
     locale: "ja_JP",
     siteName: "Schema AI",
-    title: "Schema AI - AI構造化データジェネレーター",
+    title: "Schema AI - AI構造化データジェネレーター | 無料JSON-LD生成",
     description:
-      "AIが自動でSchema.org準拠のJSON-LD構造化データを生成。LLMO/AEO時代のSEO対策を簡単に。",
+      "AIがSchema.org準拠のJSON-LD構造化データを自動生成。FAQ、商品、ローカルビジネスなど10タイプ対応。登録不要、30秒で完了。",
+    url: "https://schema.ezoai.jp",
   },
   twitter: {
     card: "summary_large_image",
     title: "Schema AI - AI構造化データジェネレーター",
     description:
-      "AIが自動でSchema.org準拠のJSON-LD構造化データを生成。LLMO/AEO時代のSEO対策を簡単に。",
+      "Schema.org準拠のJSON-LDを自動生成。10スキーマタイプ対応。無料・登録不要。",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://schema.ezoai.jp",
   },
 };
 

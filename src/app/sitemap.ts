@@ -11,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const schemaDetailPages = SCHEMA_TYPES.map((type) => ({
+    url: `${baseUrl}/schema/${type.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
+  }));
+
   return [
     {
       url: baseUrl,
@@ -19,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...schemaPages,
+    ...schemaDetailPages,
     {
       url: `${baseUrl}/guides/llmo`,
       lastModified: new Date(),

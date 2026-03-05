@@ -191,6 +191,35 @@ export default function HomePage() {
             url: "https://schema.ezoai.jp",
             description:
               "AIが自動でSchema.org準拠のJSON-LD構造化データを生成するツール",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate:
+                  "https://schema.ezoai.jp/generate/{schema_type}",
+              },
+              "query-input": "required name=schema_type",
+            },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Schema AI",
+            url: "https://schema.ezoai.jp",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Web",
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "JPY",
+            },
+            description:
+              "Schema.org準拠のJSON-LD構造化データをAIが自動生成する無料Webツール。FAQ、商品、ローカルビジネスなど10タイプ対応。",
           }),
         }}
       />
