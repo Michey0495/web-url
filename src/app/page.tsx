@@ -17,22 +17,47 @@ export default function HomePage() {
       <Header />
       <main className="flex-1">
         <section className="mx-auto max-w-5xl px-4 py-20 text-center">
+          <p className="mb-4 text-sm font-medium tracking-wide text-emerald-500">
+            無料 / 登録不要 / 30秒で生成
+          </p>
           <h1 className="text-4xl font-bold leading-tight text-white sm:text-5xl">
             構造化データ、
             <span className="text-emerald-500">AIにおまかせ</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-            Schema.org準拠のJSON-LD構造化データをAIが自動生成。
-            スキーマタイプを選んで情報を入力するだけ。
-            LLMO/AEO時代のSEO対策を、誰でも簡単に。
+            2026年、AI検索が主流になった今、
+            構造化データのないサイトはAIに見つけてもらえない。
+            Schema.org準拠のJSON-LDを、フォーム入力だけで自動生成。
           </p>
-          <div className="mt-10 flex items-center justify-center gap-4">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/generate/faq"
               className="inline-flex h-12 items-center rounded-lg bg-emerald-500 px-8 text-base font-semibold text-black transition-all duration-200 hover:bg-emerald-400"
             >
               無料で生成する
             </Link>
+            <Link
+              href="/types"
+              className="inline-flex h-12 items-center rounded-lg border border-white/20 px-8 text-base font-semibold text-white transition-all duration-200 hover:border-white/40 hover:bg-white/5"
+            >
+              10タイプを見る
+            </Link>
+          </div>
+          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-white/40">
+            <div>
+              <span className="block text-2xl font-bold text-white">10</span>
+              スキーマタイプ
+            </div>
+            <div className="h-8 w-px bg-white/10" />
+            <div>
+              <span className="block text-2xl font-bold text-white">30秒</span>
+              で生成完了
+            </div>
+            <div className="h-8 w-px bg-white/10" />
+            <div>
+              <span className="block text-2xl font-bold text-white">0円</span>
+              完全無料
+            </div>
           </div>
         </section>
 
@@ -103,9 +128,12 @@ export default function HomePage() {
 
         <section className="border-t border-white/10 py-20">
           <div className="mx-auto max-w-5xl px-4">
-            <h2 className="mb-8 text-center text-2xl font-bold text-white">
+            <h2 className="mb-4 text-center text-2xl font-bold text-white">
               なぜ構造化データが必要なのか
             </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-center text-sm leading-relaxed text-white/50">
+              Google検索もAI検索も、構造化データを読んでいる。対応しないサイトは検索結果から消えていく。
+            </p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {[
                 {
