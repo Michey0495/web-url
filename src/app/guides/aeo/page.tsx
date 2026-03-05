@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   description:
     "AEO（AI Engine Optimization）の基本と実践。構造化データを活用してAI検索エンジンでの可視性を最大化する方法を解説。",
   alternates: { canonical: "https://schema.ezoai.jp/guides/aeo" },
+  openGraph: {
+    title: "AEO対策ガイド - AI Engine Optimization入門 | Schema AI",
+    description:
+      "AEOの基本と実践。構造化データを活用してAI検索エンジンでの可視性を最大化する方法を解説。",
+    url: "https://schema.ezoai.jp/guides/aeo",
+  },
 };
 
 export default function AEOGuidePage() {

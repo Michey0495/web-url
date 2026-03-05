@@ -8,6 +8,12 @@ export const metadata: Metadata = {
   description:
     "LLMO（Large Language Model Optimization）とは？AI検索エンジンに自サイトを最適化するための構造化データ活用ガイド。",
   alternates: { canonical: "https://schema.ezoai.jp/guides/llmo" },
+  openGraph: {
+    title: "LLMO対策ガイド - AI検索時代のSEO戦略 | Schema AI",
+    description:
+      "LLMOとは？構造化データ、llms.txt、robots.txtを活用してAI検索エンジンでの露出を最大化する方法を解説。",
+    url: "https://schema.ezoai.jp/guides/llmo",
+  },
 };
 
 export default function LLMOGuidePage() {

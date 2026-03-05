@@ -9,10 +9,10 @@ export function Header() {
         </Link>
         <nav className="flex items-center gap-6 text-sm text-white/70">
           <Link
-            href="/generate/faq"
+            href="/types"
             className="transition-colors duration-200 hover:text-white"
           >
-            生成
+            スキーマ一覧
           </Link>
           <Link
             href="/guides/llmo"

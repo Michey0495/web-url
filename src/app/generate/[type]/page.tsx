@@ -24,6 +24,11 @@ export async function generateMetadata({
     title: `${schema.nameJa}の構造化データを生成 | ${schema.name} JSON-LD`,
     description: `${schema.nameJa}（${schema.name}）のJSON-LD構造化データをAIが自動生成。${schema.description}`,
     alternates: { canonical: `https://schema.ezoai.jp/generate/${type}` },
+    openGraph: {
+      title: `${schema.nameJa} JSON-LD構造化データジェネレーター | Schema AI`,
+      description: `${schema.nameJa}（${schema.name}）の構造化データを無料で自動生成。${schema.description}`,
+      url: `https://schema.ezoai.jp/generate/${type}`,
+    },
   };
 }
 
@@ -31,6 +36,10 @@ export default async function GeneratePage({ params }: PageProps) {
   const { type } = await params;
   const schema = getSchemaType(type);
   if (!schema) notFound();
+
+  const relatedTypes = schema.relatedTypes
+    .map((id) => getSchemaType(id))
+    .filter(Boolean);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -43,6 +52,13 @@ export default async function GeneratePage({ params }: PageProps) {
               className="transition-colors duration-200 hover:text-white"
             >
               トップ
+            </Link>
+            <span className="mx-2">/</span>
+            <Link
+              href="/types"
+              className="transition-colors duration-200 hover:text-white"
+            >
+              スキーマタイプ一覧
             </Link>
             <span className="mx-2">/</span>
             <span className="text-white">{schema.nameJa}</span>
@@ -68,12 +84,40 @@ export default async function GeneratePage({ params }: PageProps) {
             </h2>
             <div className="rounded-lg border border-white/10 bg-white/5 p-6">
               <p className="text-sm leading-relaxed text-white/70">
-                {schema.name}
-                は、Schema.orgで定義されている構造化データタイプの一つです。
-                このタイプの構造化データをWebページに設置することで、
-                検索エンジンがページの内容をより正確に理解できるようになります。
-                Google検索のリッチリザルト表示やAI検索での情報抽出に活用されます。
+                {schema.longDescription}
               </p>
+            </div>
+          </section>
+
+          <section className="mt-8">
+            <h2 className="mb-4 text-xl font-bold text-white">主な用途</h2>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {schema.useCases.map((useCase) => (
+                <div
+                  key={useCase}
+                  className="rounded-lg border border-white/10 bg-white/5 px-4 py-3"
+                >
+                  <p className="text-sm text-white/70">{useCase}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mt-8">
+            <h2 className="mb-4 text-xl font-bold text-white">
+              設置のポイント
+            </h2>
+            <div className="rounded-lg border border-white/10 bg-white/5 p-6">
+              <ul className="space-y-3">
+                {schema.tips.map((tip) => (
+                  <li
+                    key={tip}
+                    className="text-sm leading-relaxed text-white/70"
+                  >
+                    - {tip}
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
 
@@ -85,6 +129,33 @@ export default async function GeneratePage({ params }: PageProps) {
               <code>{JSON.stringify(schema.example, null, 2)}</code>
             </pre>
           </section>
+
+          {relatedTypes.length > 0 && (
+            <section className="mt-8">
+              <h2 className="mb-4 text-xl font-bold text-white">
+                関連する構造化データ
+              </h2>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                {relatedTypes.map(
+                  (related) =>
+                    related && (
+                      <Link
+                        key={related.id}
+                        href={`/generate/${related.id}`}
+                        className="group cursor-pointer rounded-lg border border-white/10 bg-white/5 p-4 transition-all duration-200 hover:border-emerald-500/30 hover:bg-white/10"
+                      >
+                        <p className="font-semibold text-white">
+                          {related.nameJa}
+                        </p>
+                        <p className="mt-1 text-xs text-emerald-500">
+                          {related.name}
+                        </p>
+                      </Link>
+                    )
+                )}
+              </div>
+            </section>
+          )}
         </div>
       </main>
       <Footer />
@@ -105,6 +176,12 @@ export default async function GeneratePage({ params }: PageProps) {
               {
                 "@type": "ListItem",
                 position: 2,
+                name: "スキーマタイプ一覧",
+                item: "https://schema.ezoai.jp/types",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
                 name: schema.nameJa,
                 item: `https://schema.ezoai.jp/generate/${type}`,
               },
