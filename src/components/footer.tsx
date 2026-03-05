@@ -59,6 +59,14 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-white/50">
               <li>
                 <Link
+                  href="/recommend"
+                  className="transition-colors duration-200 hover:text-white"
+                >
+                  スキーマタイプ診断
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/guides/llmo"
                   className="transition-colors duration-200 hover:text-white"
                 >

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import type { SchemaTypeConfig } from "@/lib/schema-types";
 import { generateSchemaJsonLd } from "@/lib/generate-schema";
+import { validateSchemaJsonLd, type ValidationResult } from "@/lib/validate-schema";
 
 interface HistoryEntry {
   type: string;
@@ -47,6 +48,7 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
   const [copied, setCopied] = useState(false);
   const [copiedSnippet, setCopiedSnippet] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [validation, setValidation] = useState<ValidationResult | null>(null);
   const [history, setHistory] = useState<HistoryEntry[]>(() => {
     if (typeof window === "undefined") return [];
     try {
@@ -57,6 +59,22 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
     }
   });
   const resultRef = useRef<HTMLDivElement>(null);
+  const generateRef = useRef<() => void>(null);
+
+  useEffect(() => {
+    generateRef.current = handleGenerate;
+  });
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        generateRef.current?.();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   function handleChange(key: string, value: string) {
     setFormData((prev) => ({ ...prev, [key]: value }));
@@ -81,6 +99,7 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
     setErrors([]);
     const code = generateSchemaJsonLd(schemaType, formData);
     setGeneratedCode(code);
+    setValidation(validateSchemaJsonLd(code));
     setCopied(false);
     setCopiedSnippet(false);
 
@@ -106,6 +125,7 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
     setFormData({});
     setGeneratedCode("");
     setErrors([]);
+    setValidation(null);
     setCopied(false);
     setCopiedSnippet(false);
   }, []);
@@ -215,6 +235,9 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
             className="h-12 flex-1 bg-emerald-500 text-base font-semibold text-black transition-all duration-200 hover:bg-emerald-400"
           >
             JSON-LDを生成
+            <span className="ml-2 hidden text-xs opacity-60 sm:inline">
+              Ctrl+Enter
+            </span>
           </Button>
           {(generatedCode || Object.keys(formData).length > 0) && (
             <Button
@@ -282,6 +305,47 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
               タグ内に貼り付けてください
             </p>
           </div>
+
+          {validation && (
+            <div className="rounded-lg border border-white/10 bg-white/5 p-4">
+              <h4 className="mb-3 text-sm font-semibold text-white">
+                バリデーション結果
+              </h4>
+              {validation.valid && validation.warnings.length === 0 && (
+                <p className="text-sm text-emerald-400">
+                  構造化データは正常です。Google リッチリザルトテストで最終確認をお勧めします。
+                </p>
+              )}
+              {validation.valid && validation.warnings.length > 0 && (
+                <p className="mb-2 text-sm text-emerald-400">
+                  構造化データは有効ですが、改善点があります。
+                </p>
+              )}
+              {!validation.valid && (
+                <p className="mb-2 text-sm text-red-400">
+                  構造化データにエラーがあります。
+                </p>
+              )}
+              {validation.errors.length > 0 && (
+                <ul className="mb-2 space-y-1">
+                  {validation.errors.map((err, i) => (
+                    <li key={i} className="text-xs text-red-400">
+                      {err}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {validation.warnings.length > 0 && (
+                <ul className="space-y-1">
+                  {validation.warnings.map((warn, i) => (
+                    <li key={i} className="text-xs text-yellow-400">
+                      {warn}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
 
           <div className="flex gap-4">
             <a
