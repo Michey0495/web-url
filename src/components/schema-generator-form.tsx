@@ -61,21 +61,6 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
   const resultRef = useRef<HTMLDivElement>(null);
   const generateRef = useRef<() => void>(null);
 
-  useEffect(() => {
-    generateRef.current = handleGenerate;
-  });
-
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-        e.preventDefault();
-        generateRef.current?.();
-      }
-    }
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   function handleChange(key: string, value: string) {
     setFormData((prev) => ({ ...prev, [key]: value }));
     setErrors((prev) => {
@@ -120,6 +105,21 @@ export function SchemaGeneratorForm({ schemaType }: SchemaGeneratorFormProps) {
       resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 100);
   }
+
+  useEffect(() => {
+    generateRef.current = handleGenerate;
+  });
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        e.preventDefault();
+        generateRef.current?.();
+      }
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const handleReset = useCallback(() => {
     setFormData({});
