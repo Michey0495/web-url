@@ -29,6 +29,9 @@ export default function HomePage() {
             構造化データのないサイトはAIに見つけてもらえない。
             Schema.org準拠のJSON-LDを、フォーム入力だけで自動生成。
           </p>
+          <p className="mx-auto mt-3 max-w-xl text-sm text-white/40">
+            Google公式推奨のJSON-LD形式に完全対応。リッチスニペット表示でCTR最大30%向上。
+          </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/generate/faq"
@@ -58,6 +61,17 @@ export default function HomePage() {
               <span className="block text-2xl font-bold text-white">0円</span>
               完全無料
             </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-5xl px-4 pb-12">
+          <div className="mx-auto max-w-3xl rounded-lg border border-emerald-500/20 bg-emerald-500/5 p-6 text-center">
+            <p className="text-sm font-medium text-emerald-400">
+              日本のWebサイトの構造化データ導入率はわずか約30%
+            </p>
+            <p className="mt-2 text-sm text-white/50">
+              今導入すれば、競合サイトより検索結果で目立てる。AI検索時代の先行者優位を獲得しよう。
+            </p>
           </div>
         </section>
 
@@ -299,10 +313,11 @@ export default function HomePage() {
         <section className="border-t border-white/10 py-20">
           <div className="mx-auto max-w-3xl px-4 text-center">
             <h2 className="text-2xl font-bold text-white">
-              今すぐ構造化データを生成
+              あなたのサイトも、AI検索に対応しよう
             </h2>
             <p className="mt-4 text-base text-white/50">
-              無料・登録不要。30秒で構造化データが手に入る。
+              構造化データの導入に専門知識は不要。
+              フォームに入力するだけで、Schema.org準拠のJSON-LDが手に入る。
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
@@ -312,12 +327,15 @@ export default function HomePage() {
                 無料で生成する
               </Link>
               <Link
-                href="/types"
+                href="/recommend"
                 className="inline-flex h-12 items-center rounded-lg border border-white/20 px-8 text-base font-semibold text-white transition-all duration-200 hover:border-white/40 hover:bg-white/5"
               >
-                スキーマタイプを選ぶ
+                どのタイプが必要？診断する
               </Link>
             </div>
+            <p className="mt-6 text-xs text-white/30">
+              登録不要 / クレジットカード不要 / 制限なし
+            </p>
           </div>
         </section>
       </main>
