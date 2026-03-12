@@ -1,5 +1,21 @@
 # Changelog
 
+## [2026-03-13] Maintenance (2nd run)
+
+### Updated
+- @tailwindcss/postcss: 4 → 4.2.1
+- @types/react: 19 → 19.2.14
+- @types/react-dom: 19 → 19.2.3
+- typescript: 5 → 5.9.3
+
+### Verified
+- ビルド正常 (`npm run build`)
+- TypeScript エラーなし
+- AI公開ファイル (robots.txt, llms.txt, agent.json) 正常
+- GitHub Issues: なし
+- npm audit: 脆弱性ゼロ
+- メジャーアップデートはスキップ (@types/node 25, eslint 10, shadcn 4)
+
 ## [2026-03-13] Maintenance
 
 ### Fixed
