@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-03-14] Maintenance (2nd run)
+
+### Verified
+- ビルド正常 (`npm run build`)
+- TypeScript エラーなし
+- npm audit: 脆弱性ゼロ
+- AI公開ファイル (robots.txt, llms.txt, agent.json) 正常
+- GitHub Issues: なし
+- パッチ/マイナーアップデート対象なし
+- メジャーアップデートはスキップ (@types/node 25, eslint 10, shadcn 4)
+
 ## [2026-03-14] Maintenance
 
 ### Updated
