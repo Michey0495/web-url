@@ -1,5 +1,18 @@
 # Changelog
 
+## [2026-03-14] Maintenance
+
+### Updated
+- es-iterator-helpers: 1.3.0 → 1.3.1
+
+### Verified
+- ビルド正常 (`npm run build`)
+- TypeScript エラーなし
+- npm audit: 脆弱性ゼロ
+- AI公開ファイル (robots.txt, llms.txt, agent.json) 正常
+- GitHub Issues: なし
+- メジャーアップデートはスキップ (@types/node 25, eslint 10, shadcn 4)
+
 ## [2026-03-13] Maintenance (2nd run)
 
 ### Updated
